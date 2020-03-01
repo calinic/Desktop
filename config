@@ -1,0 +1,476 @@
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;
+;;	    ____        __      __              
+;;	   / __ \____  / /_  __/ /_  ____ ______
+;;	  / /_/ / __ \/ / / / / __ \/ __ `/ ___/
+;;	 / ____/ /_/ / / /_/ / /_/ / /_/ / /    
+;;	/_/    \____/_/\__, /_.___/\__,_/_/     
+;;	              /____/                    
+;;
+;; 
+;;;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+;; Global WM Settings
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+;; Bar Settings
+
+[bar/main]
+monitor = DP-2 
+monitor-fallback =
+monitor-strict = false
+override-redirect = true
+bottom = false
+fixed-center = true
+width = 100%
+height = 28
+offset-x = 0
+offset-y = 0
+
+background = ${color.bg}
+foreground = ${color.fg}
+radius-top = 0.0
+radius-bottom = 0.0
+
+padding-right = 0
+padding-left = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "Noto Sans:size=9;2"
+font-1 = "Iosevka Nerd Font:size=11;2"
+font-2 = "Iosevka Nerd Font:size=14;3"
+
+modules-left = menu sep2 term web files sep title 
+modules-center = date bspwm 
+modules-right = audio sep network time sep sysmenu
+spacing = 0
+
+dim-value = 1.0
+wm-name = 
+locale = 
+
+tray-position = none
+tray-detached = false
+tray-maxsize = 16
+tray-transparent = false
+tray-background = ${root.background}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 0
+tray-scale = 1.0
+
+wm-restack = bspwm
+enable-ipc = true
+
+[bar/second]
+monitor = HDMI-0
+monitor-fallback =
+monitor-strict = false
+override-redirect = true
+bottom = false
+fixed-center = true
+width = 100%
+height = 28
+offset-x = 0
+offset-y = 0
+
+background = ${color.bg}
+foreground = ${color.fg}
+radius-top = 0.0
+radius-bottom = 0.0
+
+padding-right = 0
+padding-left = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "Noto Sans:size=9;2"
+font-1 = "Iosevka Nerd Font:size=11;2"
+font-2 = "Iosevka Nerd Font:size=14;3"
+font-3 = Noto Sans Symbols2:size=10;4 
+font-4 = TerminessTTF Nerd Font:size=15;
+
+modules-left = menu sep2 player-mpris-tail
+modules-center = date bspwm 
+modules-right = audio sep sysmenu
+spacing = 0
+
+dim-value = 1.0
+wm-name = 
+locale = 
+
+tray-position = none
+tray-detached = false
+tray-maxsize = 16
+tray-transparent = false
+tray-background = ${root.background}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 0
+tray-scale = 1.0
+
+wm-restack = bspwm
+enable-ipc = true
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+;; Application Settings
+
+[settings]
+; The throttle settings lets the eventloop swallow up til X events
+; if they happen within Y millisecond after first event was received.
+; This is done to prevent flood of update event.
+;
+; For example if 5 modules emit an update event at the same time, we really
+; just care about the last one. But if we wait too long for events to swallow
+; the bar would appear sluggish so we continue if timeout
+; expires or limit is reached.
+throttle-output = 5
+throttle-output-for = 10
+
+; Time in milliseconds that the input handler will wait between processing events
+throttle-input-for = 30
+
+; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
+screenchange-reload = false
+
+; Compositing operators
+; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = 
+format-background = 
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+; Enables pseudo-transparency for the bar
+; If set to true the bar can be transparent without a compositor.
+pseudo-transparency = true
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;
+;;	   ______      __               
+;;	  / ____/___  / /___  __________
+;;	 / /   / __ \/ / __ \/ ___/ ___/
+;;	/ /___/ /_/ / / /_/ / /  (__  ) 
+;;	\____/\____/_/\____/_/  /____/  
+;;
+;; Created By Aditya Shakya @adi1090x
+;;
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[color]
+
+;; Active Colors
+bg = #66232832
+bg-alt = #661C2028
+fg = #EAEAEA
+fg-alt = #9C9C9C
+
+trans = #00000000
+white = #FFFFFF
+black = #000000
+
+;; Material Colors
+
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;
+;;	    __  ___          __      __         
+;;	   /  |/  /___  ____/ /_  __/ /__  _____
+;;	  / /|_/ / __ \/ __  / / / / / _ \/ ___/
+;;	 / /  / / /_/ / /_/ / /_/ / /  __(__  ) 
+;;	/_/  /_/\____/\__,_/\__,_/_/\___/____/  
+;;
+;; Created By Aditya Shakya @adi1090x
+;;
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+; ============
+; Audio Module
+; ============
+[module/audio]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_01_00.1.hdmi-stereo
+click-right = pavucontrol
+
+; Volume label
+label-volume            =    %percentage%%
+label-volume-foreground = ${color.fg}
+label-volume-background = ${color.bg}
+label-volume-padding    = 1
+
+; Muted label
+label-muted            =    Muted
+label-muted-foreground = ${color.fg}
+label-muted-background = ${color.bg}
+label-muted-padding    = 1
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/player-mpris-tail]
+type = custom/script
+exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{:artist:t18:{artist}:}{:artist: - :}{:t20:{title}:}  %{A1:~/.config/polybar/scripts/player-mpris-tail.py previous:} ⏮ %{A} %{A1:~/.config/polybar/scripts/player-mpris-tail.py play-pause:} {icon-reversed} %{A} %{A1:~/.config/polybar/scripts/player-mpris-tail.py next:} ⏭ %{A}'
+tail = true
+
+
+[module/title]
+type = internal/xwindow
+format = <label>
+format-background = ${color.bg}
+format-foreground = ${color.fg}
+format-padding = 4
+label = %title%
+label-maxlen = 50
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+time = %I:%M %p
+date = %A, %d %B
+
+format = <label>
+;format-background = ${color.bg-alt}
+format-padding = 2
+
+label = %date%  
+
+
+[module/time]
+type = internal/date
+
+interval = 1.0
+time = %I:%M %p
+format = <label>
+;format-background = ${color.bg-alt}
+format-padding = 2
+
+label = %time%  
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/network]
+type = internal/network
+
+interface = enp4s0
+interval = 1.0
+
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <ramp-signal>
+;format-connected-background = ${color.bg-alt}
+format-connected-padding = 2
+
+format-disconnected = <label-disconnected>
+;format-disconnected-background = ${color.bg-alt}
+format-disconnected-padding = 2
+
+label-connected = 說
+
+;label-disconnected = ﲁ
+label-disconnected-foreground = ${color.fg-alt}
+
+ramp-signal-0 = 說
+ramp-signal-1 = 說
+ramp-signal-2 = 說
+ramp-signal-3 = 說
+ramp-signal-4 = 說
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/menu]
+type = custom/text
+
+content = 
+;content-background = ${color.light-blue}
+content-foreground = ${color.fg}
+content-padding = 3
+
+click-left = ~/.config/polybar/scripts/budgie-menu
+click-right = ~/.config/polybar/scripts/budgie-menu
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/sysmenu]
+type = custom/text
+
+content = 襤
+;content-background = ${color.bg-alt}
+content-foreground = ${color.fg}
+content-padding = 3
+
+click-left = ~/.config/polybar/scripts/budgie-sysmenu
+click-right = ~/.config/polybar/scripts/budgie-sysmenu
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/sep]
+type = custom/text
+
+content = |
+content-foreground = ${color.grey}
+;content-background = ${color.bg-alt}
+content-padding = 1
+
+[module/sep2]
+type = custom/text
+
+content = |
+content-foreground = ${color.grey}
+;content-background = ${color.bg}
+content-padding = 2
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+format-padding = 1
+ 
+ws-icon-0 = one;
+ws-icon-1 = twp;
+ws-icon-2 = three;
+ws-icon-3 = four;
+ws-icon-4 = five;
+ws-icon-5 = six;
+ 
+icon-default = 
+ 
+format = <label-state>
+;format-background = ${color.bg}
+label-background =${color.shade1}
+label-focused = 
+label-occupied = 
+label-urgent = 
+label-empty = 
+ 
+label-empty-padding = 1
+label-focused-padding = 1
+label-urgent-padding = 1
+label-occupied-padding = 1
+ 
+label-empty-foreground = #666666
+label-focused-foreground = #A3BE8C
+label-urgent-foreground = #BF616A
+label-occupied-foreground = #5E81AC
+
+[module/cpu]
+type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 2
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 0
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 80
+
+label =    %temperature-c%
+label-foreground = ${color.grey}
+
+[module/nvidia-gpu-temp]
+type = custom/script
+exec = ~/.config/polybar/scripts/nvidia-temp-script.sh 
+interval = 2
+units = true
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;; Apps
+ 
+[module/term]
+type = custom/text
+content = "%{T3}%{T-}"
+content-foreground = ${color.lime}
+content-background = ${color.bg}
+content-padding = 3
+click-left  = alacritty &
+
+[module/web]
+type = custom/text
+content = "%{T3}%{T-}"
+content-foreground = ${color.orange}
+content-background = ${color.bg}
+content-padding = 3
+click-left  = firefox &
+
+[module/files]
+type = custom/text
+
+content = "%{T3}%{T-}"
+content-foreground = ${color.indigo}
+content-background = ${color.bg}
+content-padding = 3
+
+click-left  = thunar &
+
+[module/settings]
+type = custom/text
+
+content = "%{T3}煉%{T-}"
+content-foreground = ${color.red}
+content-background = ${color.bg}
+content-padding = 3
+
+click-left  = manjaro-settings-manager &
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;	    __________  ______
+;;	   / ____/ __ \/ ____/
+;;	  / __/ / / / / /_    
+;;	 / /___/ /_/ / __/    
+;;	/_____/\____/_/       
+;;
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
